@@ -118,10 +118,13 @@ namespace GameOfLife
                     }
 
                     if (cells[i, j].status) //if the checked cell is alive
+                    {
                         if (neighbors == 2 || neighbors == 3) changes[i, j] = 1; //if the cell has 2 or 3 neighbors, it will be alive
-                    else { 
-                        if (neighbors == 3) changes[i, j] = 1;} //if the dead cell has 3 neighbors, it will be alive
-             
+                    }
+                    else
+                    {
+                        if (neighbors == 3) changes[i, j] = 1; //if the dead cell has 3 neighbors, it will be alive
+                    }
                 }
             }
             return changes; //return the changes to be made
@@ -130,19 +133,22 @@ namespace GameOfLife
         public void updateCells()
         {
             for (int i = 0; i < maxDim; i++)//repeat for all cells
+            {
                 for (int j = 0; j < maxDim; j++)
                 {
                     Cell x = cells[i, j]; //save cell into variable
                     if (x.status) x.cellButton.BackColor = Color.Green; //if cell is alive paint green
                     else x.cellButton.BackColor = Color.Black; //if cell is dead paint black
+                }
             }
         }
 
         public void updateCellStatus(int[,] changes)
         {
             for (int i = 0; i < maxDim; i++) //repeat for all cells
+            {
                 for (int j = 0; j < maxDim; j++) cells[i, j].set(changes[i, j]); //update the cell status to the changes found
-            
+            }
         }
 
         
