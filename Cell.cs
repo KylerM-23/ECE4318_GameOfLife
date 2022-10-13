@@ -29,5 +29,10 @@ namespace GameOfLife
             if (x == 1) status = true;            //if the number is 1, set status to true (alive) else false (dead)
             else status = false;
         }
+
+        public string getStatus()
+        { 
+            return status ? "1" : "0";
+        }
     }
 }

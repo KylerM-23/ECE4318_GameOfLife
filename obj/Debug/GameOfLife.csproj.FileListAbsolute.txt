@@ -29,3 +29,24 @@ C:\Users\Vking\Desktop\KylerMartinezECE3310MidtermTakeHome\Code\GameOfLife\obj\D
 C:\Users\Vking\Desktop\KylerMartinezECE3310MidtermTakeHome\Code\GameOfLife\obj\Debug\GameOfLife.csproj.CoreCompileInputs.cache
 C:\Users\Vking\Desktop\KylerMartinezECE3310MidtermTakeHome\Code\GameOfLife\obj\Debug\GameOfLife.exe
 C:\Users\Vking\Desktop\KylerMartinezECE3310MidtermTakeHome\Code\GameOfLife\obj\Debug\GameOfLife.pdb
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\bin\Debug\GameOfLife.exe.config
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\bin\Debug\GameOfLife.exe
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\bin\Debug\GameOfLife.pdb
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.AssemblyReference.cache
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.SuggestedBindingRedirects.cache
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.GameOfLife.resources
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.Properties.Resources.resources
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.GenerateResource.cache
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.CoreCompileInputs.cache
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.exe
+C:\Users\Vking\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.pdb
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\bin\Debug\GameOfLife.exe.config
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\bin\Debug\GameOfLife.exe
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\bin\Debug\GameOfLife.pdb
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.AssemblyReference.cache
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.GameOfLife.resources
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.Properties.Resources.resources
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.GenerateResource.cache
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.csproj.CoreCompileInputs.cache
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.exe
+C:\Users\Kyler Martinez\Desktop\ECE4318_GameOfLife\obj\Debug\GameOfLife.pdb

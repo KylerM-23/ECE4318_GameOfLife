@@ -7,34 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO;
 namespace GameOfLife
 {
     public partial class GameOfLife : Form
     {
-        const int maxDim = 20;      //set the size of the game tto maxDim x maxDim
+        static int maxDim = 2;      //set the size of the game to maxDim x maxDim
         int gen = 0;                //save the generation number
         Button[,] buttons = new Button[maxDim, maxDim];//create an array for the buttons
         Cell[,] cells = new Cell[maxDim, maxDim];//create an array for the cells
 
         public GameOfLife()
         {
+            
+            InitializeComponent();
+            CreateBoard();
+            ResetCells(); //reset the game
+        }
+
+        private void CreateBoard()
+        {
             int cellNum = 0;    //start cell numbering at 0
             int x = 200;        //starting point of button placement
             int y = 40;         //starting point of button placement
-            int size = 400/maxDim;//set size of all buttons within 400
-            InitializeComponent();
-            SizeLabel.Text = "Size:" + maxDim.ToString() + "x" +maxDim.ToString();//set the text of the size and gen labels
+            int size = 400 / maxDim;//set size of all buttons within 400
+            buttons = new Button[maxDim, maxDim];
+            cells = new Cell[maxDim, maxDim];
+
+            SizeLabel.Text = "Size:" + maxDim.ToString() + "x" + maxDim.ToString();//set the text of the size and gen labels
             GenLabel.Text = "Gen:" + gen.ToString();
             for (int i = 0; i < maxDim; i++)//repeat for all possible cells
             {
                 for (int j = 0; j < maxDim; j++)
                 {
                     Button b = new Button();    //create a button and place it at an offset of x + size * placement in row
-                    b.Location = new Point(x+size*j, y+size*i);
+                    b.Location = new Point(x + size * j, y + size * i);
                     b.Height = size;    //create a size x size button
                     b.Width = size;
-                    b.FlatStyle =  FlatStyle.Flat;//set button style 
+                    b.FlatStyle = FlatStyle.Flat;//set button style 
                     b.FlatAppearance.BorderSize = 1;
                     b.FlatAppearance.BorderColor = Color.Gray;
                     b.Click += new EventHandler(Cell_Click); //add method Cell_Click to button
@@ -45,7 +55,6 @@ namespace GameOfLife
                     cellNum++; //increase cell number
                 }
             }
-            ResetCells(); //reset the game
         }
 
         private void ResetCells()
@@ -146,11 +155,60 @@ namespace GameOfLife
         public void updateCellStatus(int[,] changes)
         {
             for (int i = 0; i < maxDim; i++) //repeat for all cells
-            {
                 for (int j = 0; j < maxDim; j++) cells[i, j].set(changes[i, j]); //update the cell status to the changes found
-            }
         }
 
-        
+        private void saveGame(object sender, EventArgs e)
+        {
+            saveGame();
+        }
+
+        private void saveGame()
+        {
+            if (File.Exists("gameData.txt")) File.Delete("gameData.txt");
+
+            StreamWriter file = new StreamWriter("gameData.txt", append: true);
+
+            file.WriteLine(maxDim.ToString());
+            file.WriteLine(gen.ToString());
+            for (int i = 0; i < maxDim; i++) //check for all cells
+            {
+                for (int j = 0; j < maxDim; j++)
+                    file.WriteLine( cells[i, j].getStatus());
+            }
+            file.Close();
+        }
+
+        private void loadGame(object sender, EventArgs e)
+        {
+            loadGame();
+        }
+
+        private void loadGame()
+        {   
+            try
+            {
+                StreamReader file = new StreamReader("gameData.txt");
+
+                for (int i = 0; i < maxDim; i++) //check for all cells
+                    for (int j = 0; j < maxDim; j++)
+                        Controls.Remove(buttons[i, j]);
+
+                maxDim = Int32.Parse(file.ReadLine());
+                gen = Int32.Parse(file.ReadLine());
+                int[,] changes = new int[maxDim, maxDim];
+
+                for (int i = 0; i < maxDim; i++) //check for all cells
+                    for (int j = 0; j < maxDim; j++)
+                        changes[i, j] = Int32.Parse(file.ReadLine());
+
+                file.Close();
+                CreateBoard();
+                updateCellStatus(changes);
+                updateCells();
+
+            }
+            catch (Exception) { return; }
+        }
     }
 }
