@@ -90,6 +90,11 @@ namespace GameOfLife
 
         private void Next_Gen(object sender, EventArgs e)
         {
+            Next_Gen(); 
+        }
+        
+        private void Next_Gen() 
+        {
             int[,] changes = new int[maxDim, maxDim];//create an array to store the changes
             for (int i = 0; i < maxDim; i++) //repeat for all cells
                 for (int j = 0; j < maxDim; j++) changes[i, j] = 0; //reset the changes to 0 by default
@@ -209,6 +214,41 @@ namespace GameOfLife
 
             }
             catch (Exception) { return; }
+        }
+        
+        private async void FastForward(object sender, EventArgs e) // basically repeats Next_Gen() ?num_gen? times
+        {
+            int num_gen = 0;
+            bool valid = Int32.TryParse(Forward_Textbox.Text, out num_gen); // get desired number of generations to fast forward
+            if (valid && num_gen>0)
+            {
+                int delay_time = 500; // delay time between generations
+                for (int gen_idx = 0; gen_idx < num_gen; ++gen_idx)
+                {
+                    Next_Gen();
+                    await Task.Delay(delay_time);
+                }
+            }
+        }
+        
+        private async void Extinction(object sender, EventArgs e)
+        {   // game where you initialize your cell community and hope it survives
+            // you get a score based on how many cells survived
+            gen = 0;//set generation to 0 and update the label
+            GenLabel.Text = "Gen:" + gen.ToString();
+            Extinction_Score.Text = "Extinction Score:0";
+            await Task.Delay(1);
+            for (int gen_idx = 0; gen_idx < 10000; ++gen_idx) Next_Gen();
+            Extinction_Score.Text = "Extinction Score:" + Count_Alive_Cells().ToString(); // return score
+        }
+
+        public int Count_Alive_Cells()
+        {
+            int score = 0;
+            for (int i = 0; i < maxDim; i++)     //repeat for all cells
+                for (int j = 0; j < maxDim; j++) //
+                    score += cells[i, j].status ? 1 : 0; // check status
+            return score;
         }
     }
 }
