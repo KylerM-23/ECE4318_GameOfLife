@@ -36,6 +36,10 @@ namespace GameOfLife
             this.SizeLabel = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.Forward_Textbox = new System.Windows.Forms.TextBox();
+            this.Forward_Button = new System.Windows.Forms.Button();
+            this.Extinction_Score = new System.Windows.Forms.Label();
+            this.Extinction_Game = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -112,6 +116,48 @@ namespace GameOfLife
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.loadGame);
             // 
+            // Forward_Textbox
+            // 
+            this.Forward_Textbox.AutoSize = true;
+            this.Forward_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Forward_Textbox.Location = new System.Drawing.Point(610, 530);
+            this.Forward_Textbox.Name = "Forward_Textbox";
+            this.Forward_Textbox.Size = new System.Drawing.Size(100, 20);
+            this.Forward_Textbox.TabIndex = 7;
+            this.Forward_Textbox.Text = "0";
+            // 
+            // Forward_Button
+            // 
+            this.Forward_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Forward_Button.Location = new System.Drawing.Point(500, 500);
+            this.Forward_Button.Name = "Forward_Button";
+            this.Forward_Button.Size = new System.Drawing.Size(105, 85);
+            this.Forward_Button.TabIndex = 8;
+            this.Forward_Button.Text = "Fast Forward:";
+            this.Forward_Button.UseVisualStyleBackColor = true;
+            this.Forward_Button.Click += new System.EventHandler(this.FastForward);
+            // 
+            // Extinction_Score
+            // 
+            this.Extinction_Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Extinction_Score.Location = new System.Drawing.Point(700, 600);
+            this.Extinction_Score.Name = "Extinction_Score";
+            this.Extinction_Score.Size = new System.Drawing.Size(300, 20);
+            this.Extinction_Score.TabIndex = 9;
+            this.Extinction_Score.Text = "Extinction Score:0";
+            // 
+            // Extinction_Game
+            // 
+            this.Forward_Textbox.AutoSize = true;
+            this.Extinction_Game.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Extinction_Game.Location = new System.Drawing.Point(700, 620);
+            this.Extinction_Game.Name = "Extinction_Game";
+            this.Extinction_Game.Size = new System.Drawing.Size(105, 85);
+            this.Extinction_Game.TabIndex = 10;
+            this.Extinction_Game.Text = "Play Extinction (~1min)";
+            this.Extinction_Game.UseVisualStyleBackColor = true;
+            this.Extinction_Game.Click += new System.EventHandler(this.Extinction);
+            // 
             // GameOfLife
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,6 +170,10 @@ namespace GameOfLife
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.Forward_Textbox);
+            this.Controls.Add(this.Forward_Button);
+            this.Controls.Add(this.Extinction_Score);
+            this.Controls.Add(this.Extinction_Game);
             this.Name = "GameOfLife";
             this.Text = "Game Of Life";
             this.ResumeLayout(false);
@@ -140,6 +190,10 @@ namespace GameOfLife
         private System.Windows.Forms.Label SizeLabel;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox Forward_Textbox;
+        private System.Windows.Forms.Button Forward_Button;
+        private System.Windows.Forms.Label Extinction_Score;
+        private System.Windows.Forms.Button Extinction_Game;
     }
 }
 
