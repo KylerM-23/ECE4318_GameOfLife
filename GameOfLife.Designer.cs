@@ -40,169 +40,138 @@ namespace GameOfLife
             this.Forward_Button = new System.Windows.Forms.Button();
             this.Extinction_Score = new System.Windows.Forms.Label();
             this.Extinction_Game = new System.Windows.Forms.Button();
+            this.SizeBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            //
+            // 
             // NextGen
-            //
+            // 
             this.NextGen.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NextGen.Location = new System.Drawing.Point(50, 184);
+            this.NextGen.Location = new System.Drawing.Point(28, 185);
             this.NextGen.Name = "NextGen";
             this.NextGen.Size = new System.Drawing.Size(130, 70);
             this.NextGen.TabIndex = 0;
             this.NextGen.Text = "Next Gen";
             this.NextGen.UseVisualStyleBackColor = true;
             this.NextGen.Click += new System.EventHandler(this.Next_Gen);
-            //
+            // 
             // label1
-            //
+            // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(241, 9);
+            this.label1.Location = new System.Drawing.Point(232, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(175, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Conway\'s Game Of Life";
-            //
+            // 
             // Reset
-            //
+            // 
             this.Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Reset.Location = new System.Drawing.Point(661, 332);
+            this.Reset.Location = new System.Drawing.Point(637, 297);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(160, 70);
             this.Reset.TabIndex = 2;
             this.Reset.Text = "Reset";
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.ResetCells);
-            //
+            // 
             // GenLabel
-            //
+            // 
             this.GenLabel.AutoSize = true;
             this.GenLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GenLabel.Location = new System.Drawing.Point(46, 82);
+            this.GenLabel.Location = new System.Drawing.Point(24, 82);
             this.GenLabel.Name = "GenLabel";
             this.GenLabel.Size = new System.Drawing.Size(44, 20);
             this.GenLabel.TabIndex = 3;
             this.GenLabel.Text = "Gen:";
-            //
+            // 
             // SizeLabel
-            //
+            // 
             this.SizeLabel.AutoSize = true;
             this.SizeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SizeLabel.Location = new System.Drawing.Point(46, 132);
+            this.SizeLabel.Location = new System.Drawing.Point(24, 132);
             this.SizeLabel.Name = "SizeLabel";
             this.SizeLabel.Size = new System.Drawing.Size(44, 20);
             this.SizeLabel.TabIndex = 4;
             this.SizeLabel.Text = "Size:";
-            //
+            // 
             // SaveGameButton
-            //
+            // 
             this.SaveGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SaveGameButton.Location = new System.Drawing.Point(661, 169);
+            this.SaveGameButton.Location = new System.Drawing.Point(637, 145);
             this.SaveGameButton.Name = "SaveGameButton";
             this.SaveGameButton.Size = new System.Drawing.Size(160, 70);
             this.SaveGameButton.TabIndex = 5;
             this.SaveGameButton.Text = "Save Game";
             this.SaveGameButton.UseVisualStyleBackColor = true;
             this.SaveGameButton.Click += new System.EventHandler(this.saveGame);
-            //
+            // 
             // LoadGameButton
-            //
+            // 
             this.LoadGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadGameButton.Location = new System.Drawing.Point(661, 251);
+            this.LoadGameButton.Location = new System.Drawing.Point(637, 221);
             this.LoadGameButton.Name = "LoadGameButton";
             this.LoadGameButton.Size = new System.Drawing.Size(160, 70);
             this.LoadGameButton.TabIndex = 6;
             this.LoadGameButton.Text = "Load Game";
             this.LoadGameButton.UseVisualStyleBackColor = true;
             this.LoadGameButton.Click += new System.EventHandler(this.loadGame);
-            //
+            // 
             // Forward_Textbox
-            //
+            // 
             this.Forward_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Forward_Textbox.Location = new System.Drawing.Point(67, 376);
+            this.Forward_Textbox.Location = new System.Drawing.Point(28, 341);
             this.Forward_Textbox.Name = "Forward_Textbox";
             this.Forward_Textbox.Size = new System.Drawing.Size(100, 26);
             this.Forward_Textbox.TabIndex = 7;
             this.Forward_Textbox.Text = "0";
-            //
+            // 
             // Forward_Button
-            //
+            // 
             this.Forward_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Forward_Button.Location = new System.Drawing.Point(50, 280);
+            this.Forward_Button.Location = new System.Drawing.Point(27, 274);
             this.Forward_Button.Name = "Forward_Button";
-            this.Forward_Button.Size = new System.Drawing.Size(130, 72);
+            this.Forward_Button.Size = new System.Drawing.Size(145, 61);
             this.Forward_Button.TabIndex = 8;
-            this.Forward_Button.Text = "Fast Forward:";
+            this.Forward_Button.Text = "Fast Forward";
             this.Forward_Button.UseVisualStyleBackColor = true;
             this.Forward_Button.Click += new System.EventHandler(this.FastForward);
-            //
+            // 
             // Extinction_Score
-            //
+            // 
             this.Extinction_Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Extinction_Score.Location = new System.Drawing.Point(512, 9);
+            this.Extinction_Score.Location = new System.Drawing.Point(439, 9);
             this.Extinction_Score.Name = "Extinction_Score";
             this.Extinction_Score.Size = new System.Drawing.Size(300, 20);
             this.Extinction_Score.TabIndex = 9;
             this.Extinction_Score.Text = "Extinction Score:0";
-            //
+            // 
             // Extinction_Game
-            //
+            // 
             this.Extinction_Game.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Extinction_Game.Location = new System.Drawing.Point(661, 89);
+            this.Extinction_Game.Location = new System.Drawing.Point(637, 65);
             this.Extinction_Game.Name = "Extinction_Game";
-            this.Extinction_Game.Size = new System.Drawing.Size(160, 70);
+            this.Extinction_Game.Size = new System.Drawing.Size(160, 74);
             this.Extinction_Game.TabIndex = 10;
             this.Extinction_Game.Text = "Play Extinction";
             this.Extinction_Game.UseVisualStyleBackColor = true;
             this.Extinction_Game.Click += new System.EventHandler(this.Extinction);
-            //
-            // Forward_Textbox
-            //
-            this.Forward_Textbox.AutoSize = true;
-            this.Forward_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Forward_Textbox.Location = new System.Drawing.Point(610, 530);
-            this.Forward_Textbox.Name = "Forward_Textbox";
-            this.Forward_Textbox.Size = new System.Drawing.Size(100, 20);
-            this.Forward_Textbox.TabIndex = 7;
-            this.Forward_Textbox.Text = "0";
-            //
-            // Forward_Button
-            //
-            this.Forward_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Forward_Button.Location = new System.Drawing.Point(500, 500);
-            this.Forward_Button.Name = "Forward_Button";
-            this.Forward_Button.Size = new System.Drawing.Size(105, 85);
-            this.Forward_Button.TabIndex = 8;
-            this.Forward_Button.Text = "Fast Forward:";
-            this.Forward_Button.UseVisualStyleBackColor = true;
-            this.Forward_Button.Click += new System.EventHandler(this.FastForward);
-            //
-            // Extinction_Score
-            //
-            this.Extinction_Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Extinction_Score.Location = new System.Drawing.Point(700, 600);
-            this.Extinction_Score.Name = "Extinction_Score";
-            this.Extinction_Score.Size = new System.Drawing.Size(300, 20);
-            this.Extinction_Score.TabIndex = 9;
-            this.Extinction_Score.Text = "Extinction Score:0";
-            //
-            // Extinction_Game
-            //
-            this.Forward_Textbox.AutoSize = true;
-            this.Extinction_Game.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Extinction_Game.Location = new System.Drawing.Point(700, 620);
-            this.Extinction_Game.Name = "Extinction_Game";
-            this.Extinction_Game.Size = new System.Drawing.Size(105, 85);
-            this.Extinction_Game.TabIndex = 10;
-            this.Extinction_Game.Text = "Play Extinction (~1min)";
-            this.Extinction_Game.UseVisualStyleBackColor = true;
-            this.Extinction_Game.Click += new System.EventHandler(this.Extinction);
-            //
+            // 
+            // SizeBox
+            // 
+            this.SizeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SizeBox.Location = new System.Drawing.Point(74, 129);
+            this.SizeBox.Name = "SizeBox";
+            this.SizeBox.Size = new System.Drawing.Size(86, 26);
+            this.SizeBox.TabIndex = 11;
+            this.SizeBox.Text = "0";
+            // 
             // GameOfLife
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 454);
+            this.ClientSize = new System.Drawing.Size(844, 493);
+            this.Controls.Add(this.SizeBox);
             this.Controls.Add(this.LoadGameButton);
             this.Controls.Add(this.SaveGameButton);
             this.Controls.Add(this.SizeLabel);
@@ -234,5 +203,6 @@ namespace GameOfLife
         private System.Windows.Forms.Button Forward_Button;
         private System.Windows.Forms.Label Extinction_Score;
         private System.Windows.Forms.Button Extinction_Game;
+        private System.Windows.Forms.TextBox SizeBox;
     }
 }

@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Microsoft.Win32;
+
 namespace GameOfLife
 {
     public partial class GameOfLife : Form
     {
-        static int maxDim = 2;      //set the size of the game to maxDim x maxDim
+        static int maxDim = 5;      //set the size of the game to maxDim x maxDim
         int gen = 0;                //save the generation number
         Button[,] buttons = new Button[maxDim, maxDim];//create an array for the buttons
         Cell[,] cells = new Cell[maxDim, maxDim];//create an array for the cells
@@ -34,8 +36,9 @@ namespace GameOfLife
             buttons = new Button[maxDim, maxDim];
             cells = new Cell[maxDim, maxDim];
 
-            SizeLabel.Text = "Size:" + maxDim.ToString() + "x" + maxDim.ToString();//set the text of the size and gen labels
-            GenLabel.Text = "Gen:" + gen.ToString();
+            SizeLabel.Text = "Size:";//set the text of the size and gen labels
+            GenLabel.Text = "Gen: " + gen.ToString();
+            SizeBox.Text = maxDim.ToString();
             for (int i = 0; i < maxDim; i++)//repeat for all possible cells
             {
                 for (int j = 0; j < maxDim; j++)
@@ -57,10 +60,17 @@ namespace GameOfLife
             }
         }
 
+        private void destoryBoard()
+        {
+            for (int i = 0; i < maxDim; i++) //check for all cells
+                for (int j = 0; j < maxDim; j++)
+                    Controls.Remove(buttons[i, j]);
+        }
+
         private void ResetCells()
         {
             gen = 0;//set generation to 0 and update the label
-            GenLabel.Text = "Gen:" + gen.ToString();
+            GenLabel.Text = "Gen: " + gen.ToString();
             for (int i = 0; i < maxDim; i++) //repeat for all cells
             {
                 for (int j = 0; j < maxDim; j++)
@@ -102,11 +112,15 @@ namespace GameOfLife
             updateCellStatus(changes);//update the cell status based on the changes calculated
             updateCells();//update the on screen cells
             gen++; //increase generation
-            GenLabel.Text = "Gen:" + gen.ToString();//update generation 
+            GenLabel.Text = "Gen: " + gen.ToString();//update generation 
         }
 
         private void ResetCells(object sender, EventArgs e)
         {
+
+            destoryBoard();
+            bool valid = Int32.TryParse(SizeBox.Text, out maxDim);
+            CreateBoard();
             ResetCells(); //Reset the game
         }
 
@@ -163,46 +177,58 @@ namespace GameOfLife
                 for (int j = 0; j < maxDim; j++) cells[i, j].set(changes[i, j]); //update the cell status to the changes found
         }
 
-        private void saveGame(object sender, EventArgs e)
+
+        private void loadGame(object sender, EventArgs e)
         {
-            saveGame();
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Multiselect = false;
+            dialog.Filter = "Game Of Life|*.gol";
+            dialog.DefaultExt = ".txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+                loadGame(dialog.FileNames[0]);
         }
 
-        private void saveGame()
+        private void saveGame(object sender, EventArgs e)
         {
-            if (File.Exists("gameData.txt")) File.Delete("gameData.txt");
 
-            StreamWriter file = new StreamWriter("gameData.txt", append: true);
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "Game Of Life|*.gol";
+            dialog.DefaultExt = ".txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+                saveGame(dialog.FileNames[0]);
+        }
+
+        private void saveGame(string fp)
+        {
+            if (File.Exists(fp)) File.Delete(fp);
+
+            StreamWriter file = new StreamWriter(fp, append: true);
 
             file.WriteLine(maxDim.ToString());
             file.WriteLine(gen.ToString());
             for (int i = 0; i < maxDim; i++) //check for all cells
             {
                 for (int j = 0; j < maxDim; j++)
-                    file.WriteLine( cells[i, j].getStatus());
+                    file.WriteLine(cells[i, j].getStatus());
             }
             file.Close();
         }
 
-        private void loadGame(object sender, EventArgs e)
-        {
-            loadGame();
-        }
+        
 
-        private void loadGame()
+        private void loadGame(string fp)
         {   
             try
             {
-                StreamReader file = new StreamReader("gameData.txt");
+                StreamReader file = new StreamReader(fp);
 
-                for (int i = 0; i < maxDim; i++) //check for all cells
-                    for (int j = 0; j < maxDim; j++)
-                        Controls.Remove(buttons[i, j]);
+                
 
                 maxDim = Int32.Parse(file.ReadLine());
                 gen = Int32.Parse(file.ReadLine());
                 int[,] changes = new int[maxDim, maxDim];
-
+                destoryBoard();
                 for (int i = 0; i < maxDim; i++) //check for all cells
                     for (int j = 0; j < maxDim; j++)
                         changes[i, j] = Int32.Parse(file.ReadLine());
