@@ -222,13 +222,12 @@ namespace GameOfLife
             try
             {
                 StreamReader file = new StreamReader(fp);
-
-                
+                destoryBoard();
 
                 maxDim = Int32.Parse(file.ReadLine());
                 gen = Int32.Parse(file.ReadLine());
                 int[,] changes = new int[maxDim, maxDim];
-                destoryBoard();
+                
                 for (int i = 0; i < maxDim; i++) //check for all cells
                     for (int j = 0; j < maxDim; j++)
                         changes[i, j] = Int32.Parse(file.ReadLine());
