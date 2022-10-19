@@ -24,9 +24,9 @@ namespace GameOfLife
         public GameOfLife()
         {
             
-            InitializeComponent();
-            CreateBoard();
-            ResetCells(); //reset the game
+            InitializeComponent();  //init GUI
+            CreateBoard();          //create the cell buttons
+            ResetCells();           //reset the game
         }
 
         private void CreateBoard()
@@ -62,11 +62,11 @@ namespace GameOfLife
             }
         }
 
-        private void destoryBoard()
+        private void destroyBoard()
         {
             for (int i = 0; i < maxDim; i++) //check for all cells
                 for (int j = 0; j < maxDim; j++)
-                    Controls.Remove(buttons[i, j]);
+                    Controls.Remove(buttons[i, j]); //remove the button from the GUI
         }
 
         private void ResetCells()
@@ -121,9 +121,16 @@ namespace GameOfLife
         private void ResetCells(object sender, EventArgs e)
         {
 
-            destoryBoard();
-            bool valid = Int32.TryParse(SizeBox.Text, out maxDim);
-            CreateBoard();
+            int test;
+            bool valid = Int32.TryParse(SizeBox.Text, out test); //find the new size
+
+            if (test != maxDim && valid) //if the parse was a success & the dimensions changed
+            {
+                destroyBoard();          //destroy the board
+                maxDim = test;           //update the board size
+                CreateBoard();           //create new board
+            }
+
             ResetCells(); //Reset the game
         }
 
@@ -183,13 +190,12 @@ namespace GameOfLife
 
         private void loadGame(object sender, EventArgs e)
         {
-
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Multiselect = false;
-            dialog.Filter = "Game Of Life|*.gol";
-            dialog.DefaultExt = ".txt";
-            if (dialog.ShowDialog() == DialogResult.OK)
-                loadGame(dialog.FileNames[0]);
+            OpenFileDialog dialog = new OpenFileDialog();   //open file dialog
+            dialog.Multiselect = false;                     //only select one file
+            dialog.Filter = "Game Of Life|*.gol";           //only allow game of life files
+            dialog.DefaultExt = ".gol";                     //game of life extension
+            if (dialog.ShowDialog() == DialogResult.OK)     //if the user selects a file
+                loadGame(dialog.FileNames[0]);              //call load game function and pass file path
         }
 
         private void saveGame(object sender, EventArgs e)
@@ -217,14 +223,12 @@ namespace GameOfLife
             file.Close();                                           //close file
         }
 
-        
-
         private void loadGame(string fp)
         {   
             try
             {
                 StreamReader file = new StreamReader(fp); //create file reader
-                destoryBoard();                           
+                destroyBoard();                           
 
                 maxDim = Int32.Parse(file.ReadLine());    //first line is the dimensions
                 gen = Int32.Parse(file.ReadLine());       //second line is the generations
@@ -286,14 +290,14 @@ namespace GameOfLife
             
             
             int test;
-            bool valid = Int32.TryParse(SizeBox.Text, out test);
+            bool valid = Int32.TryParse(SizeBox.Text, out test); //read the new dimensions
 
-            if (test != maxDim && valid)
+            if (test != maxDim && valid) //if the user entered a valid response and the dimensions changed
             {
-                destoryBoard();
-                maxDim = test;
-                CreateBoard();
-                ResetCells(); //Reset the game
+                destroyBoard();         //destroy the board
+                maxDim = test;          //update the size
+                CreateBoard();          //create the new board
+                ResetCells();           //Reset the game
             }
 
             // update cell colors immediately after
