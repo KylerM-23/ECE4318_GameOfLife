@@ -257,6 +257,7 @@ namespace GameOfLife
                 for (int gen_idx = 0; gen_idx < num_gen; ++gen_idx)
                 {
                     Next_Gen();
+                    GenLabel.Text = "Gen: " + gen.ToString();
                     await Task.Delay(delay_time);
                 }
             }
@@ -265,8 +266,7 @@ namespace GameOfLife
         private async void Extinction(object sender, EventArgs e)
         {   // game where you initialize your cell community and hope it survives
             // you get a score based on how many cells survived
-            gen = 0;//set generation to 0 and update the label
-            GenLabel.Text = "Gen:" + gen.ToString();
+            GenLabel.Text = "Gen: " + gen.ToString();
             Extinction_Score.Text = "Extinction Score:0";
             await Task.Delay(1);
             for (int gen_idx = 0; gen_idx < 10000; ++gen_idx) Next_Gen();
