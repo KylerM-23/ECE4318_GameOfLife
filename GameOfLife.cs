@@ -69,6 +69,7 @@ namespace GameOfLife
 
         private void ResetCells()
         {
+            Extinction_Score.Text = "Extinction Score:0";
             gen = 0;//set generation to 0 and update the label
             GenLabel.Text = "Gen: " + gen.ToString();
             for (int i = 0; i < maxDim; i++) //repeat for all cells
