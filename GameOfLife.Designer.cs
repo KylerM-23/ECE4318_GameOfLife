@@ -41,6 +41,9 @@ namespace GameOfLife
             this.Extinction_Score = new System.Windows.Forms.Label();
             this.Extinction_Game = new System.Windows.Forms.Button();
             this.SizeBox = new System.Windows.Forms.TextBox();
+            this.Alive_Color_Textbox = new System.Windows.Forms.TextBox();
+            this.Dead_Color_Textbox = new System.Windows.Forms.TextBox();
+            this.Alive_Dead_Color_Button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NextGen
@@ -166,6 +169,37 @@ namespace GameOfLife
             this.SizeBox.TabIndex = 11;
             this.SizeBox.Text = "0";
             // 
+            // Alive_Color_Textbox
+            // 
+            this.Alive_Color_Textbox.AutoSize = true;
+            this.Alive_Color_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Alive_Color_Textbox.Location = new System.Drawing.Point(300, 600);
+            this.Alive_Color_Textbox.Name = "Alive_Color_Textbox";
+            this.Alive_Color_Textbox.Size = new System.Drawing.Size(100, 20);
+            this.Alive_Color_Textbox.TabIndex = 12;
+            this.Alive_Color_Textbox.Text = "green";
+            // 
+            // Dead_Color_Textbox
+            // 
+            this.Dead_Color_Textbox.AutoSize = true;
+            this.Dead_Color_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dead_Color_Textbox.Location = new System.Drawing.Point(300, 630);
+            this.Dead_Color_Textbox.Name = "Dead_Color_Textbox";
+            this.Dead_Color_Textbox.Size = new System.Drawing.Size(100, 20);
+            this.Dead_Color_Textbox.TabIndex = 13;
+            this.Dead_Color_Textbox.Text = "black";
+            // 
+            // Alive_Dead_Color_Button
+            // 
+            this.Alive_Dead_Color_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Alive_Dead_Color_Button.Location = new System.Drawing.Point(290, 615);
+            this.Alive_Dead_Color_Button.Name = "Alive_Dead_Color_Button";
+            this.Alive_Dead_Color_Button.Size = new System.Drawing.Size(105, 85);
+            this.Alive_Dead_Color_Button.TabIndex = 14;
+            this.Alive_Dead_Color_Button.Text = "Cell Colors (Alive/Dead):";
+            this.Alive_Dead_Color_Button.UseVisualStyleBackColor = true;
+            this.Alive_Dead_Color_Button.Click += new System.EventHandler(this.Set_Cell_Colors);
+            // 
             // GameOfLife
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,6 +217,9 @@ namespace GameOfLife
             this.Controls.Add(this.Forward_Button);
             this.Controls.Add(this.Extinction_Score);
             this.Controls.Add(this.Extinction_Game);
+            this.Controls.Add(this.Alive_Color_Textbox);
+            this.Controls.Add(this.Dead_Color_Textbox);
+            this.Controls.Add(this.Alive_Dead_Color_Button);
             this.Name = "GameOfLife";
             this.Text = "Game Of Life";
             this.ResumeLayout(false);
@@ -204,5 +241,8 @@ namespace GameOfLife
         private System.Windows.Forms.Label Extinction_Score;
         private System.Windows.Forms.Button Extinction_Game;
         private System.Windows.Forms.TextBox SizeBox;
+        private System.Windows.Forms.TextBox Alive_Color_Textbox;
+        private System.Windows.Forms.TextBox Dead_Color_Textbox;
+        private System.Windows.Forms.Button Alive_Dead_Color_Button;
     }
 }
