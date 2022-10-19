@@ -194,28 +194,27 @@ namespace GameOfLife
 
         private void saveGame(object sender, EventArgs e)
         {
-
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "Game Of Life|*.gol";
-            dialog.DefaultExt = ".txt";
-            if (dialog.ShowDialog() == DialogResult.OK)
-                saveGame(dialog.FileNames[0]);
+            SaveFileDialog dialog = new SaveFileDialog(); //Create dialog window
+            dialog.Filter = "Game Of Life|*.gol";         //only view Game of Life save files
+            dialog.DefaultExt = ".gol";         
+            if (dialog.ShowDialog() == DialogResult.OK)   //if a file was selected
+                saveGame(dialog.FileNames[0]);            //call the saveGame function and pass the file path
         }
 
         private void saveGame(string fp)
         {
-            if (File.Exists(fp)) File.Delete(fp);
+            if (File.Exists(fp)) File.Delete(fp);                   //if the game exists, delete
 
-            StreamWriter file = new StreamWriter(fp, append: true);
+            StreamWriter file = new StreamWriter(fp, append: true); //create writer
 
-            file.WriteLine(maxDim.ToString());
-            file.WriteLine(gen.ToString());
+            file.WriteLine(maxDim.ToString());                      //save board size on first line
+            file.WriteLine(gen.ToString());                         //save generations on second line
             for (int i = 0; i < maxDim; i++) //check for all cells
             {
                 for (int j = 0; j < maxDim; j++)
-                    file.WriteLine(cells[i, j].getStatus());
+                    file.WriteLine(cells[i, j].getStatus());        //save the cell status on the line
             }
-            file.Close();
+            file.Close();                                           //close file
         }
 
         
@@ -224,24 +223,24 @@ namespace GameOfLife
         {   
             try
             {
-                StreamReader file = new StreamReader(fp);
-                destoryBoard();
+                StreamReader file = new StreamReader(fp); //create file reader
+                destoryBoard();                           
 
-                maxDim = Int32.Parse(file.ReadLine());
-                gen = Int32.Parse(file.ReadLine());
+                maxDim = Int32.Parse(file.ReadLine());    //first line is the dimensions
+                gen = Int32.Parse(file.ReadLine());       //second line is the generations
                 int[,] changes = new int[maxDim, maxDim];
                 
                 for (int i = 0; i < maxDim; i++) //check for all cells
                     for (int j = 0; j < maxDim; j++)
-                        changes[i, j] = Int32.Parse(file.ReadLine());
+                        changes[i, j] = Int32.Parse(file.ReadLine()); //Read the line and store in a changes list
 
-                file.Close();
-                CreateBoard();
-                updateCellStatus(changes);
-                updateCells();
+                file.Close(); //close the file
+                CreateBoard(); //create board based on save file size
+                updateCellStatus(changes); //update cells
+                updateCells(); //display changes
 
             }
-            catch (Exception) { return; }
+            catch (Exception) { return; } //if something goes wrong, do not make changes.
         }
         
         private async void FastForward(object sender, EventArgs e) // basically repeats Next_Gen() ?num_gen? times
@@ -284,8 +283,26 @@ namespace GameOfLife
             // set colors for both alive and dead cells
             alive_color = Alive_Color_Textbox.Text;
             dead_color = Dead_Color_Textbox.Text;
+            
+            
+            int test;
+            bool valid = Int32.TryParse(SizeBox.Text, out test);
+
+            if (test != maxDim && valid)
+            {
+                destoryBoard();
+                maxDim = test;
+                CreateBoard();
+                ResetCells(); //Reset the game
+            }
+
             // update cell colors immediately after
             updateCells();
+        }
+
+        private void GameOfLife_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
