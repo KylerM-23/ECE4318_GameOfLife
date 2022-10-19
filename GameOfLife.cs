@@ -18,6 +18,8 @@ namespace GameOfLife
         int gen = 0;                //save the generation number
         Button[,] buttons = new Button[maxDim, maxDim];//create an array for the buttons
         Cell[,] cells = new Cell[maxDim, maxDim];//create an array for the cells
+        string alive_color ="green"; // used to control cell colors
+        string dead_color ="black";  // green and black are default colors; incorrect input colors will automatically display white
 
         public GameOfLife()
         {
@@ -76,7 +78,7 @@ namespace GameOfLife
             {
                 for (int j = 0; j < maxDim; j++)
                 {
-                    buttons[i, j].BackColor = Color.Black; //set the color of the cell to black (dead)
+                    buttons[i, j].BackColor = Color.FromName(dead_color); //set the color of the cell to dead_color
                     cells[i, j].set(0);//0 sets the cell to dead
                 }
             }
@@ -92,8 +94,8 @@ namespace GameOfLife
                     if (x == cells[i, j].cellButton) //if the button matches the cell
                     {
                         cells[i, j].toggle(); //invert the status of the cell
-                        if (cells[i, j].status) x.BackColor = Color.Green; //if the cell is alive now turn green
-                        else x.BackColor = Color.Black; //if the cell is dead now turn black
+                        if (cells[i, j].status) x.BackColor = Color.FromName(alive_color); //if the cell is alive now turn to alive_color
+                        else x.BackColor = Color.FromName(dead_color); //if the cell is dead now turn to dead_color
                     }
                 }
             }
@@ -166,8 +168,8 @@ namespace GameOfLife
                 for (int j = 0; j < maxDim; j++)
                 {
                     Cell x = cells[i, j]; //save cell into variable
-                    if (x.status) x.cellButton.BackColor = Color.Green; //if cell is alive paint green
-                    else x.cellButton.BackColor = Color.Black; //if cell is dead paint black
+                    if (x.status) x.cellButton.BackColor = Color.FromName(alive_color); //if cell is alive paint alive_color
+                    else x.cellButton.BackColor = Color.FromName(dead_color); //if cell is dead paint dead_color
                 }
             }
         }
@@ -275,6 +277,15 @@ namespace GameOfLife
                 for (int j = 0; j < maxDim; j++) //
                     score += cells[i, j].status ? 1 : 0; // check status
             return score;
+        }
+        
+        private void Set_Cell_Colors(object sender, EventArgs e)
+        {
+            // set colors for both alive and dead cells
+            alive_color = Alive_Color_Textbox.Text;
+            dead_color = Dead_Color_Textbox.Text;
+            // update cell colors immediately after
+            updateCells();
         }
     }
 }
