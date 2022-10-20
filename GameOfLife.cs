@@ -143,26 +143,21 @@ namespace GameOfLife
                 {
                     neighbors = 0; //set neighbors to 0
                     for (int x = i - 1; x < i + 2; x++) //check all possible rows
-                    {
                         if (0 <= x && x < maxDim) //check if row is within the dimensions of the game
                         {
                             if (j - 1 >= 0) //check if the column exists
-                                if (cells[x, j - 1].status) neighbors++; //if the cell is alive, increase neighbors
+                                neighbors += (cells[x, j - 1].status) ? 1:0; //if the cell is alive, increase neighbors
                             if (j + 1 < maxDim) //check if the column is in range of the game
-                                if (cells[x, j + 1].status) neighbors++;//if the cell is alive, increase neighbors
+                                neighbors += (cells[x, j + 1].status) ? 1 : 0;//if the cell is alive, increase neighbors
                             if (x != i) //check the middle cell if it is not the checking cell
-                                if (cells[x, j].status) neighbors++; //if the cell is alive, increase neighbors
+                                neighbors += (cells[x, j].status) ? 1 : 0;//if the cell is alive, increase neighbors
                         }
-                    }
 
-                    if (cells[i, j].status) //if the checked cell is alive
-                    {
-                        if (neighbors == 2 || neighbors == 3) changes[i, j] = 1; //if the cell has 2 or 3 neighbors, it will be alive
-                    }
-                    else
-                    {
-                        if (neighbors == 3) changes[i, j] = 1; //if the dead cell has 3 neighbors, it will be alive
-                    }
+                    if (cells[i, j].status) { //if the checked cell is alive
+                        if (neighbors == 2 || neighbors == 3) changes[i, j] = 1; } //if the cell has 2 or 3 neighbors, it will be alive
+                    else {
+                        if (neighbors == 3) changes[i, j] = 1; } //if the dead cell has 3 neighbors, it will be alive
+
                 }
             }
             return changes; //return the changes to be made
@@ -209,18 +204,20 @@ namespace GameOfLife
 
         private void saveGame(string fp)
         {
-            if (File.Exists(fp)) File.Delete(fp);                   //if the game exists, delete
-
-            StreamWriter file = new StreamWriter(fp, append: true); //create writer
-
-            file.WriteLine(maxDim.ToString());                      //save board size on first line
-            file.WriteLine(gen.ToString());                         //save generations on second line
-            for (int i = 0; i < maxDim; i++) //check for all cells
+            try
             {
-                for (int j = 0; j < maxDim; j++)
-                    file.WriteLine(cells[i, j].getStatus());        //save the cell status on the line
+                if (File.Exists(fp)) File.Delete(fp);                   //if the game exists, delete
+
+                StreamWriter file = new StreamWriter(fp, append: true); //create writer
+
+                file.WriteLine(maxDim.ToString());                      //save board size on first line
+                file.WriteLine(gen.ToString());                         //save generations on second line
+                for (int i = 0; i < maxDim; i++) //check for all cells
+                    for (int j = 0; j < maxDim; j++)
+                        file.WriteLine(cells[i, j].getStatus());        //save the cell status on the line
+                file.Close();                                           //close file
             }
-            file.Close();                                           //close file
+            catch (Exception) { return; } //if something goes wrong, do not make changes.
         }
 
         private void loadGame(string fp)
@@ -242,7 +239,6 @@ namespace GameOfLife
                 CreateBoard(); //create board based on save file size
                 updateCellStatus(changes); //update cells
                 updateCells(); //display changes
-
             }
             catch (Exception) { return; } //if something goes wrong, do not make changes.
         }
