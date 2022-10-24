@@ -245,16 +245,16 @@ namespace GameOfLife
         
         private async void FastForward(object sender, EventArgs e) // basically repeats Next_Gen() ?num_gen? times
         {
-            int num_gen = 0;
+            int num_gen = 0; // will hold desired number of generations to fast forward
             bool valid = Int32.TryParse(Forward_Textbox.Text, out num_gen); // get desired number of generations to fast forward
-            if (valid && num_gen>0)
+            if (valid && num_gen>0) // if input number is valid and over 0
             {
                 int delay_time = 500; // delay time between generations
-                for (int gen_idx = 0; gen_idx < num_gen; ++gen_idx)
+                for (int gen_idx = 0; gen_idx < num_gen; ++gen_idx) // loops for desired number of generations
                 {
-                    Next_Gen();
-                    GenLabel.Text = "Gen: " + gen.ToString();
-                    await Task.Delay(delay_time);
+                    Next_Gen(); // do one generation
+                    GenLabel.Text = "Gen: " + gen.ToString(); // update Gen label
+                    await Task.Delay(delay_time); // delay
                 }
             }
         }
@@ -262,10 +262,10 @@ namespace GameOfLife
         private async void Extinction(object sender, EventArgs e)
         {   // game where you initialize your cell community and hope it survives
             // you get a score based on how many cells survived
-            GenLabel.Text = "Gen: " + gen.ToString();
-            Extinction_Score.Text = "Extinction Score:0";
-            await Task.Delay(1);
-            for (int gen_idx = 0; gen_idx < 10000; ++gen_idx) Next_Gen();
+            GenLabel.Text = "Gen: " + gen.ToString();     // get current gen label
+            Extinction_Score.Text = "Extinction Score:0"; // set score to 0
+            await Task.Delay(1); // brief delay
+            for (int gen_idx = 0; gen_idx < 10000; ++gen_idx) Next_Gen(); // spam Next_Gen() to simulate an extinction
             Extinction_Score.Text = "Extinction Score:" + Count_Alive_Cells().ToString(); // return score
         }
 
@@ -274,18 +274,18 @@ namespace GameOfLife
             int score = 0;
             for (int i = 0; i < maxDim; i++)     //repeat for all cells
                 for (int j = 0; j < maxDim; j++) //
-                    score += cells[i, j].status ? 1 : 0; // check status
+                    score += cells[i, j].status ? 1 : 0; // check status and add up alive cells
             return score;
         }
         
-        private void Set_Cell_Colors(object sender, EventArgs e)
+        private void Set_Cell_Colors(object sender, EventArgs e) // change cell colors AND ALSO board size
         {
-            // set colors for both alive and dead cells
+            // set colors for both alive and dead cells from user input
             alive_color = Alive_Color_Textbox.Text;
             dead_color = Dead_Color_Textbox.Text;
             
             
-            int test;
+            int test; // TEST stands for: The End-user's Size Text i.e. the desired size
             bool valid = Int32.TryParse(SizeBox.Text, out test); //read the new dimensions
 
             if (test != maxDim && valid) //if the user entered a valid response and the dimensions changed
