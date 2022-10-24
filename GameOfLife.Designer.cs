@@ -199,7 +199,7 @@ namespace GameOfLife
             this.Apply_Config_button.TabIndex = 14;
             this.Apply_Config_button.Text = "Apply Changes";
             this.Apply_Config_button.UseVisualStyleBackColor = true;
-            this.Apply_Config_button.Click += new System.EventHandler(this.Set_Cell_Colors);
+            this.Apply_Config_button.Click += new System.EventHandler(this.Set_Dim_and_Cell_Colors);
             // 
             // colorlabel
             // 
