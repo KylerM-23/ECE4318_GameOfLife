@@ -278,20 +278,20 @@ namespace GameOfLife
             return score;
         }
         
-        private void Set_Cell_Colors(object sender, EventArgs e) // change cell colors AND ALSO board size
+        private void Set_Dim_and_Cell_Colors(object sender, EventArgs e) // change cell colors AND ALSO board size
         {
             // set colors for both alive and dead cells from user input
             alive_color = Alive_Color_Textbox.Text;
             dead_color = Dead_Color_Textbox.Text;
             
             
-            int test; // TEST stands for: The End-user's Size Text i.e. the desired size
-            bool valid = Int32.TryParse(SizeBox.Text, out test); //read the new dimensions
+            int desired_size; // the desired size
+            bool valid = Int32.TryParse(SizeBox.Text, out desired_size); //read the new dimensions
 
-            if (test != maxDim && valid) //if the user entered a valid response and the dimensions changed
+            if (desired_size != maxDim && valid) //if the user entered a valid response and the dimensions changed
             {
                 destroyBoard();         //destroy the board
-                maxDim = test;          //update the size
+                maxDim = desired_size;   //update the size
                 CreateBoard();          //create the new board
                 ResetCells();           //Reset the game
             }
